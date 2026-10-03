@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import Logo from "@/components/brand/Logo";
 import Button from "@/components/common/Button";
 import { ArrowRight, Menu, X } from "lucide-react";
@@ -8,6 +9,8 @@ import { ArrowRight, Menu, X } from "lucide-react";
 export default function LandingNavbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,11 +22,38 @@ export default function LandingNavbar() {
   }, []);
 
   const navLinks = [
-    { label: "Services", href: "/#services" },
-    { label: "Capabilities", href: "/#features" },
-    { label: "Our Process", href: "/#workflow" },
-    { label: "Social Systems", href: "/#automation" },
+    { label: "Services", href: "/#services", targetId: "services" },
+    { label: "Capabilities", href: "/#features", targetId: "features" },
+    { label: "Our Process", href: "/#workflow", targetId: "workflow" },
+    { label: "Social Systems", href: "/#automation", targetId: "automation" },
   ];
+
+  const handleScrollToSection = (e, targetId) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      const element = document.getElementById(targetId);
+      if (element) {
+        const navOffset = 90;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+
+        window.history.pushState(null, "", `#${targetId}`);
+      }
+    } else {
+      e.preventDefault();
+      router.push(`/#${targetId}`);
+    }
+  };
+
+  const handleMobileNavClick = (e, targetId) => {
+    setMobileMenu(false);
+    handleScrollToSection(e, targetId);
+  };
 
   return (
     <header className="fixed top-3 sm:top-4 inset-x-0 z-50 px-3 sm:px-5 lg:px-6 pointer-events-none">
@@ -41,13 +71,14 @@ export default function LandingNavbar() {
             <Logo size="default" href="/" variant="light" />
           </div>
 
-          {/* Desktop Nav Links with Animated Underline */}
+          {/* Desktop Nav Links with Animated Underline and Smooth Scroll */}
           <nav className="hidden md:flex items-center gap-7 text-xs font-medium text-slate-300">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="relative py-1 hover:text-white transition-colors duration-200 tracking-tight group"
+                onClick={(e) => handleScrollToSection(e, link.targetId)}
+                className="relative py-1 hover:text-white transition-colors duration-200 tracking-tight group cursor-pointer"
               >
                 <span>{link.label}</span>
                 <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-gradient-to-r from-blue-400 to-sky-300 transition-all duration-300 ease-out group-hover:w-full rounded-full" />
@@ -55,9 +86,13 @@ export default function LandingNavbar() {
             ))}
           </nav>
 
-          {/* Right CTA Action: Request a Service with Micro-pulse & Scale */}
+          {/* Right CTA Action: Request a Service with Smooth Scroll */}
           <div className="hidden sm:flex items-center">
-            <a href="/#request-service" className="transition-transform duration-200 hover:scale-105 active:scale-95">
+            <a
+              href="/#request-service"
+              onClick={(e) => handleScrollToSection(e, "request-service")}
+              className="transition-transform duration-200 hover:scale-105 active:scale-95 cursor-pointer"
+            >
               <Button
                 variant="primary"
                 size="sm"
@@ -71,7 +106,10 @@ export default function LandingNavbar() {
 
           {/* Mobile Hamburger Toggle */}
           <div className="sm:hidden flex items-center gap-2">
-            <a href="/#request-service">
+            <a
+              href="/#request-service"
+              onClick={(e) => handleScrollToSection(e, "request-service")}
+            >
               <Button size="sm" variant="primary" className="!bg-blue-600 text-xs py-1 px-3 !rounded-full">
                 Request Service
               </Button>
@@ -92,15 +130,19 @@ export default function LandingNavbar() {
               <a
                 key={link.label}
                 href={link.href}
-                onClick={() => setMobileMenu(false)}
-                className="block text-sm text-slate-300 hover:text-white py-1.5"
+                onClick={(e) => handleMobileNavClick(e, link.targetId)}
+                className="block text-sm text-slate-300 hover:text-white py-1.5 cursor-pointer"
               >
                 {link.label}
               </a>
             ))}
             <div className="pt-2 border-t border-slate-800 flex flex-col gap-2">
-              <a href="/#request-service" onClick={() => setMobileMenu(false)} className="w-full">
-                <Button size="md" variant="primary" className="w-full !bg-blue-600 !rounded-xl">
+              <a
+                href="/#request-service"
+                onClick={(e) => handleMobileNavClick(e, "request-service")}
+                className="w-full"
+              >
+                <Button size="md" variant="primary" className="w-full !bg-blue-600 !rounded-xl cursor-pointer">
                   Request a Service
                 </Button>
               </a>
