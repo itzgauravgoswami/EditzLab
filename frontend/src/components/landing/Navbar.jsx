@@ -19,10 +19,10 @@ export default function LandingNavbar() {
   }, []);
 
   const navLinks = [
-    { label: "Services", href: "#services" },
-    { label: "Capabilities", href: "#features" },
-    { label: "Our Process", href: "#workflow" },
-    { label: "Social Systems", href: "#automation" },
+    { label: "Services", href: "/#services" },
+    { label: "Capabilities", href: "/#features" },
+    { label: "Our Process", href: "/#workflow" },
+    { label: "Social Systems", href: "/#automation" },
   ];
 
   return (
@@ -57,7 +57,7 @@ export default function LandingNavbar() {
 
           {/* Right CTA Action: Request a Service with Micro-pulse & Scale */}
           <div className="hidden sm:flex items-center">
-            <a href="#request-service" className="transition-transform duration-200 hover:scale-105 active:scale-95">
+            <a href="/#request-service" className="transition-transform duration-200 hover:scale-105 active:scale-95">
               <Button
                 variant="primary"
                 size="sm"
@@ -71,7 +71,7 @@ export default function LandingNavbar() {
 
           {/* Mobile Hamburger Toggle */}
           <div className="sm:hidden flex items-center gap-2">
-            <a href="#request-service">
+            <a href="/#request-service">
               <Button size="sm" variant="primary" className="!bg-blue-600 text-xs py-1 px-3 !rounded-full">
                 Request Service
               </Button>
@@ -99,7 +99,7 @@ export default function LandingNavbar() {
               </a>
             ))}
             <div className="pt-2 border-t border-slate-800 flex flex-col gap-2">
-              <a href="#request-service" onClick={() => setMobileMenu(false)} className="w-full">
+              <a href="/#request-service" onClick={() => setMobileMenu(false)} className="w-full">
                 <Button size="md" variant="primary" className="w-full !bg-blue-600 !rounded-xl">
                   Request a Service
                 </Button>

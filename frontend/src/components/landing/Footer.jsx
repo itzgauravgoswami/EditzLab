@@ -66,11 +66,11 @@ export default function LandingFooter() {
               Creative Offerings
             </h5>
             <ul className="space-y-2">
-              <li><a href="#services" className="inline-block hover:text-white hover:translate-x-1.5 transition-all duration-200">Video Production</a></li>
-              <li><a href="#services" className="inline-block hover:text-white hover:translate-x-1.5 transition-all duration-200">Commercial Photoshoots</a></li>
-              <li><a href="#services" className="inline-block hover:text-white hover:translate-x-1.5 transition-all duration-200">Web Development</a></li>
-              <li><a href="#services" className="inline-block hover:text-white hover:translate-x-1.5 transition-all duration-200">Social Media Management</a></li>
-              <li><a href="#request-service" className="inline-block text-blue-400 hover:text-sky-300 hover:translate-x-1.5 transition-all duration-200 font-medium">Request a Proposal →</a></li>
+              <li><a href="/#services" className="inline-block hover:text-white hover:translate-x-1.5 transition-all duration-200">Video Production</a></li>
+              <li><a href="/#services" className="inline-block hover:text-white hover:translate-x-1.5 transition-all duration-200">Commercial Photoshoots</a></li>
+              <li><a href="/#services" className="inline-block hover:text-white hover:translate-x-1.5 transition-all duration-200">Web Development</a></li>
+              <li><a href="/#services" className="inline-block hover:text-white hover:translate-x-1.5 transition-all duration-200">Social Media Management</a></li>
+              <li><a href="/#request-service" className="inline-block text-blue-400 hover:text-sky-300 hover:translate-x-1.5 transition-all duration-200 font-medium">Request a Proposal →</a></li>
             </ul>
           </div>
 
@@ -116,7 +116,7 @@ export default function LandingFooter() {
               </li>
               <li>
                 <a
-                  href="#request-service"
+                  href="/#request-service"
                   className="inline-block hover:text-white hover:translate-x-1.5 transition-all duration-200"
                 >
                   Book Discovery Call
@@ -124,7 +124,7 @@ export default function LandingFooter() {
               </li>
               <li>
                 <a
-                  href="#workflow"
+                  href="/#workflow"
                   className="inline-block hover:text-white hover:translate-x-1.5 transition-all duration-200"
                 >
                   Production Process
